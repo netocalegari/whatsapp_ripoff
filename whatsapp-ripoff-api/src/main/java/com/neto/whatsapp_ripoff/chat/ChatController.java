@@ -17,7 +17,7 @@ public class ChatController {
     private final ChatService chatService;
 
     @PostMapping
-    public ResponseEntity<StringResponse> createChate(
+    public ResponseEntity<StringResponse> createChat(
             @RequestParam(name = "sender-id") String senderId,
             @RequestParam(name = "receiver-id") String receiverId
     ) {
