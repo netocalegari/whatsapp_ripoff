@@ -7,7 +7,7 @@ export const keycloakHttpInterceptor: HttpInterceptorFn = (req, next) => {
   const keycloakService = inject(KeycloakService);
   const token = keycloakService.keycloak.token;
 
-  if (!token) {
+  if (token) {
     const authReq = req.clone({
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`,

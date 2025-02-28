@@ -10,11 +10,11 @@ import { RequestBuilder } from '../../request-builder';
 
 import { UserResponse } from '../../models/user-response';
 
-export interface GetUsers$Params {
+export interface GetAllUsers$Params {
 }
 
-export function getUsers(http: HttpClient, rootUrl: string, params?: GetUsers$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<UserResponse>>> {
-  const rb = new RequestBuilder(rootUrl, getUsers.PATH, 'get');
+export function getAllUsers(http: HttpClient, rootUrl: string, params?: GetAllUsers$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<UserResponse>>> {
+  const rb = new RequestBuilder(rootUrl, getAllUsers.PATH, 'get');
   if (params) {
   }
 
@@ -28,4 +28,4 @@ export function getUsers(http: HttpClient, rootUrl: string, params?: GetUsers$Pa
   );
 }
 
-getUsers.PATH = '/api/v1/users';
+getAllUsers.PATH = '/api/v1/users';

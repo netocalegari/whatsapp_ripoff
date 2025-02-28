@@ -11,8 +11,8 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
-import { getUsers } from '../fn/user/get-users';
-import { GetUsers$Params } from '../fn/user/get-users';
+import { getAllUsers } from '../fn/user/get-all-users';
+import { GetAllUsers$Params } from '../fn/user/get-all-users';
 import { UserResponse } from '../models/user-response';
 
 @Injectable({ providedIn: 'root' })
@@ -21,27 +21,27 @@ export class UserService extends BaseService {
     super(config, http);
   }
 
-  /** Path part for operation `getUsers()` */
-  static readonly GetUsersPath = '/api/v1/users';
+  /** Path part for operation `getAllUsers()` */
+  static readonly GetAllUsersPath = '/api/v1/users';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getUsers()` instead.
+   * To access only the response body, use `getAllUsers()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getUsers$Response(params?: GetUsers$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<UserResponse>>> {
-    return getUsers(this.http, this.rootUrl, params, context);
+  getAllUsers$Response(params?: GetAllUsers$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<UserResponse>>> {
+    return getAllUsers(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `getUsers$Response()` instead.
+   * To access the full response (for headers, for example), `getAllUsers$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getUsers(params?: GetUsers$Params, context?: HttpContext): Observable<Array<UserResponse>> {
-    return this.getUsers$Response(params, context).pipe(
+  getAllUsers(params?: GetAllUsers$Params, context?: HttpContext): Observable<Array<UserResponse>> {
+    return this.getAllUsers$Response(params, context).pipe(
       map((r: StrictHttpResponse<Array<UserResponse>>): Array<UserResponse> => r.body)
     );
   }

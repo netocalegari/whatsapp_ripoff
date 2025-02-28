@@ -13,9 +13,7 @@
   "paths": {
     "/api/v1/messages": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "operationId": "saveMessage",
         "requestBody": {
           "content": {
@@ -34,9 +32,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "operationId": "setMessagesToSeen",
         "parameters": [
           {
@@ -67,9 +63,7 @@
     },
     "/api/v1/messages/upload-media": {
       "post": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "operationId": "uploadMedia",
         "parameters": [
           {
@@ -92,9 +86,7 @@
                     "format": "binary"
                   }
                 },
-                "required": [
-                  "file"
-                ]
+                "required": ["file"]
               }
             }
           }
@@ -108,9 +100,7 @@
     },
     "/api/v1/chats": {
       "get": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "operationId": "getChatsByReceiver",
         "responses": {
           "200": {
@@ -129,9 +119,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Chat"
-        ],
+        "tags": ["Chat"],
         "operationId": "createChat",
         "parameters": [
           {
@@ -167,10 +155,8 @@
     },
     "/api/v1/users": {
       "get": {
-        "tags": [
-          "User"
-        ],
-        "operationId": "getUsers",
+        "tags": ["User"],
+        "operationId": "getAllUsers",
         "responses": {
           "200": {
             "description": "OK",
@@ -190,9 +176,7 @@
     },
     "/api/v1/messages/chat/{chat-id}": {
       "get": {
-        "tags": [
-          "Message"
-        ],
+        "tags": ["Message"],
         "operationId": "getMessages",
         "parameters": [
           {
@@ -238,12 +222,7 @@
           },
           "type": {
             "type": "string",
-            "enum": [
-              "TEXT",
-              "IMAGE",
-              "AUDIO",
-              "VIDEO"
-            ]
+            "enum": ["TEXT", "IMAGE", "AUDIO", "VIDEO"]
           },
           "chatId": {
             "type": "string"
@@ -294,19 +273,11 @@
           },
           "type": {
             "type": "string",
-            "enum": [
-              "TEXT",
-              "IMAGE",
-              "AUDIO",
-              "VIDEO"
-            ]
+            "enum": ["TEXT", "IMAGE", "AUDIO", "VIDEO"]
           },
           "state": {
             "type": "string",
-            "enum": [
-              "SENT",
-              "SEEN"
-            ]
+            "enum": ["SENT", "SEEN"]
           },
           "senderId": {
             "type": "string"
@@ -366,9 +337,7 @@
           "password": {
             "authorizationUrl": "http://localhost:9090/realms/whatsapp-ripoff/protocol/openid-connect/auth",
             "tokenUrl": "http://localhost:9090/realms/whatsapp-ripoff/protocol/openid-connect/token",
-            "scopes": {
-
-            }
+            "scopes": {}
           }
         }
       }
