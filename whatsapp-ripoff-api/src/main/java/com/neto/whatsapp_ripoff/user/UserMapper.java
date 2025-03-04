@@ -21,7 +21,7 @@ public class UserMapper {
         }
 
         if (attributes.containsKey("family_name")) {
-            user.setFirstName(attributes.get("family_name").toString());
+            user.setLastName(attributes.get("family_name").toString());
         }
 
         if (attributes.containsKey("email")) {

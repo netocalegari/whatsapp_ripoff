@@ -10,6 +10,7 @@ public class ChatMapper {
                 .name(chat.getChatName(senderId))
                 .unreadCount(chat.getUnreadMessages(senderId))
                 .lastMessage(chat.getLastMessage())
+                .lastMessageTime(chat.getLastMessageTime())
                 .isRecipientOnline(chat.getRecipient().isUserOnline())
                 .senderId(chat.getSender().getId())
                 .receiverId(chat.getRecipient().getId())

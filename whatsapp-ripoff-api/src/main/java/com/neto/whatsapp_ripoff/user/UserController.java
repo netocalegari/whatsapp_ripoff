@@ -18,7 +18,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<UserResponse>> getUsers(Authentication authentication) {
-        return ResponseEntity.ok(userService.getAllUserExceptSelf(authentication));
+    public ResponseEntity<List<UserResponse>> getAllUsers(Authentication authentication) {
+        return ResponseEntity.ok(userService.findAllUsersExceptSelf(authentication));
     }
 }

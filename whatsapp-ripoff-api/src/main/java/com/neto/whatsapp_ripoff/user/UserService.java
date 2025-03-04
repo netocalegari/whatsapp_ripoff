@@ -12,8 +12,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public List<UserResponse> getAllUserExceptSelf(Authentication connectedUser) {
-        return userRepository.getAllUserExceptSelf(connectedUser.getName()).stream().map(userMapper::toUserResponse).toList();
+    public List<UserResponse> findAllUsersExceptSelf(Authentication connectedUser) {
+        return userRepository.findAllUsersExceptSelf(connectedUser.getName()).stream().map(userMapper::toUserResponse).toList();
     }
 
 }
