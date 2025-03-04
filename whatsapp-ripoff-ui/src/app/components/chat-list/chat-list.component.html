@@ -66,7 +66,7 @@
         class="msg-date"
         [class.unread]="chat.unreadCount && chat.unreadCount > 0"
       >
-        {{ chat.lastMessageTime | date : "dd.MM.yyy HH:mm" }}
+        {{ chat.lastMessageTime | date : "dd/MM/yyy HH:mm" }}
       </span>
 
       @if(chat.unreadCount && chat.unreadCount > 0) {
@@ -89,7 +89,7 @@
         <small class="text-secondary"> Online </small>
         } @else {
         <small class="text-secondary">
-          Last seen&nbsp;{{ contact.lastSeen | date : "dd.MM.yyyy HH:mm" }}
+          Last seen&nbsp;{{ contact.lastSeen | date : "dd/MM/yyyy HH:mm" }}
         </small>
 
         }
