@@ -21,6 +21,7 @@
           (chatSelected)="chatSelected($event)"
         ></app-chat-list>
       </div>
+      @if(selectedChat.id) {
       <div class="col-9">
         <div class="d-flex flex-column justify-content-between h-100">
           <div class="gray-bg p-2">
@@ -49,11 +50,111 @@
           <div #scrollableDiv class="h-100 bg-chat p-3 overflow-x-scroll">
             @for (message of chatMessages; track message ) { @if
             (isSelfMessage(message)) {
-            <div class="message-box self"></div>
+            <div class="message-box self">
+              <div class="d-flex flex-column">
+                @if (message.type === 'TEXT') {
+                <span>
+                  {{ message.content }}
+                </span>
+                } @else if (message.media) {
+                <img
+                  width="200"
+                  class="cursor-pointer"
+                  [src]="'data:image/jpg:base64' + message.media"
+                  alt=""
+                />
+                }
+                <small class="text-black-50">
+                  {{ message.createdAt | date : "HH:mm" }}
+                  @if (message.state === 'SENT') {
+                  <span>
+                    <i class="fas fa-check"></i>
+                  </span>
+                  } @else {
+                  <i class="fas fa-check seen"></i>
+                  <i class="fas fa-check seen ml-negative"></i>
+                  }
+                </small>
+              </div>
+            </div>
+            } @else {
+            <div class="message-box friend">
+              <div class="d-flex flex-column align-items-end">
+                @if (message.type === 'TEXT') {
+                <span>{{ message.content }}</span>
+                } @else if (message.media) {
+                <img
+                  width="200"
+                  class="cursor-pointer"
+                  [src]="'data:image/jpg:base64' + message.media"
+                  alt=""
+                />
+                }
+                <small class="text-black-50">{{
+                  message.createdAt | date : "HH:mm"
+                }}</small>
+              </div>
+            </div>
             } }
+          </div>
+          <div class="gray-bg p-2">
+            <div class="d-flex align-items-center gap-2">
+              <i
+                class="fas fa-paperclip cursor-pointer"
+                (click)="inputFile.click()"
+              ></i>
+              <input
+                #inputFile
+                type="file"
+                [hidden]="true"
+                accept=".jpg, .jpeg, .png, .svg, mp4, .mov, .mp3"
+                (change)="uploadMediaFile($event.target)"
+              />
+              <i
+                class="fa-regular fa-face-smile cursor-pointer"
+                (click)="showEmojis = !showEmojis"
+              ></i>
+
+              @if(showEmojis) {
+              <emoji-mart
+                [set]="'google'"
+                title="Pick your emoji..."
+                emoji="smile"
+                class="emojis-panel"
+                (emojiClick)="onSelectEmojis($event)"
+              >
+              </emoji-mart>
+              }
+              <input
+                type="text"
+                class="form-control-sm w-100"
+                placeholder="Type a message"
+                [(ngModel)]="messageContent"
+                (keydown)="keyDown($event)"
+                (click)="onClick()"
+              />
+              @if(messageContent) {
+              <i
+                class="fas fa-paper-plane cursor-pointer"
+                (click)="sendMessage()"
+              ></i>
+              } @else {
+              <i class="fas fa-microphone cursor-pointer"></i>
+              }
+            </div>
           </div>
         </div>
       </div>
+
+      } @else {
+      <div
+        class="d-flex flex-column justify-content-center align-items-center h-100 w-100 bg-chat"
+      >
+        <img src="wa_banner.png" width="300px" alt="" />
+        <h2 class="text-black-50">WhatsApp Ripoff Application</h2>
+        <p class="text-black-50">...</p>
+      </div>
+      }
     </div>
   </div>
 </div>
