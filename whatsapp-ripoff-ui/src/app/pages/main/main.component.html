@@ -60,7 +60,7 @@
                 <img
                   width="200"
                   class="cursor-pointer"
-                  [src]="'data:image/jpg:base64' + message.media"
+                  [src]="'data:image/jpg;base64,' + message.media"
                   alt=""
                 />
                 }
@@ -86,7 +86,7 @@
                 <img
                   width="200"
                   class="cursor-pointer"
-                  [src]="'data:image/jpg:base64' + message.media"
+                  [src]="'data:image/jpg;base64,' + message.media"
                   alt=""
                 />
                 }
@@ -107,8 +107,8 @@
                 #inputFile
                 type="file"
                 [hidden]="true"
-                accept=".jpg, .jpeg, .png, .svg, mp4, .mov, .mp3"
-                (change)="uploadMediaFile($event.target)"
+                accept=".jpg, .jpeg, .png, .svg, .mp4, .mov, .mp3"
+                (change)="uploadMedia($event.target)"
               />
               <i
                 class="fa-regular fa-face-smile cursor-pointer"

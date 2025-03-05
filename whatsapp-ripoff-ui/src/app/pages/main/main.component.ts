@@ -184,7 +184,50 @@ export class MainComponent implements OnInit, OnDestroy {
     return message.senderId === this.keyCloakService.userId;
   }
 
-  uploadMediaFile(target: EventTarget | null) {}
+  uploadMedia(target: EventTarget | null) {
+    const file = this.extractFileFromTarget(target);
+    if (file !== null) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          const mediaLines = reader.result.toString().split(",")[1];
+
+          this.messageService
+            .uploadMedia({
+              "chat-id": this.selectedChat.id as string,
+              body: {
+                file: file,
+              },
+            })
+            .subscribe({
+              next: () => {
+                const message: MessageResponse = {
+                  senderId: this.getSenderId(),
+                  receiverId: this.getReceiverId(),
+                  content: "Attachment",
+                  type: "IMAGE",
+                  state: "SENT",
+                  media: [mediaLines],
+                  createdAt: new Date().toString(),
+                };
+                this.chatMessages.push(message);
+              },
+            });
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  extractFileFromTarget(target: EventTarget | null): File | null {
+    const htmlInputTarget = target as HTMLInputElement;
+
+    if (target === null || htmlInputTarget.files === null) {
+      return null;
+    }
+
+    return htmlInputTarget.files[0];
+  }
 
   onSelectEmojis(emojiSelected: any) {
     const emoji: EmojiData = emojiSelected.emoji;
