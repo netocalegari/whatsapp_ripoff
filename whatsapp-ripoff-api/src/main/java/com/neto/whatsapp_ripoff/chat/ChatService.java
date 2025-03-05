@@ -27,7 +27,7 @@ public class ChatService {
         return chatRepository.findChatsBySenderId(userId).stream().map(c -> mapper.toChatResponse(c, userId)).toList();
     }
 
-    @Query(name = ChatConstants.FIND_CHAT_BY_SENDER_ID_AND_RECEIVER_ID)
+//    @Query(name = ChatConstants.FIND_CHAT_BY_SENDER_ID_AND_RECEIVER_ID)
     public String createChat(String senderId, String receiverId) {
         Optional<Chat> existingChat = chatRepository.findChatsBySenderAndReceiver(senderId, receiverId);
 
